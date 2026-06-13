@@ -48,8 +48,7 @@ const runAutoEscalationCheck = async () => {
       `SELECT r.*, d.id as dept_id 
        FROM requests r
        LEFT JOIN users u ON r.current_assignee_id = u.id
-       LEFT JOIN departments d ON u.department_id = d.id OR r.department_id = d.id
-       WHERE r.sla_deadline < CURRENT_TIMESTAMP 
+       LEFT JOIN departments d ON u.department_id = d.id       WHERE r.sla_deadline < CURRENT_TIMESTAMP 
          AND r.status NOT IN ('Approved', 'Rejected') 
          AND r.is_escalated = FALSE`
     );

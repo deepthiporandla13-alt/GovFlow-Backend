@@ -52,7 +52,7 @@ router.get('/summary', verifyToken, async (req, res) => {
       JOIN users u ON r.citizen_id = u.id -- Citizen who created
       -- But we want to group by department of the assignee
       LEFT JOIN users ass ON r.current_assignee_id = ass.id
-      LEFT JOIN departments d ON r.department_id = d.id OR ass.department_id = d.id
+      LEFT JOIN departments d ON ass.department_id = d.id
       WHERE d.name IS NOT NULL
       GROUP BY d.name
     `;
