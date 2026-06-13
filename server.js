@@ -59,7 +59,7 @@ const runAutoEscalationCheck = async () => {
         // Find a manager in department
         const managerRes = await client.query(
           "SELECT id FROM users WHERE role = 'Manager' AND department_id = $1 ORDER BY RANDOM() LIMIT 1",
-          [req.department_id || req.dept_id || 1]
+          [req.dept_id || 1]
         );
         const managerId = managerRes.rows[0] ? managerRes.rows[0].id : null;
 
